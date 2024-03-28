@@ -1,0 +1,23 @@
+from uix.elements import row,label, grid, col, input, button, tr, td
+from views.webhook_ui import update_table
+
+
+def add_new_mount_point_dialog():
+
+    with grid("",columns="1fr 4fr") as grid_container:
+        grid_container.style("gap: 10px; padding: 10px; ")
+        with col():
+            label(":")
+        with col():
+            input("",id="repository_name",required=True).on("change", input_setter)
+        with col():
+            label("URL:").on("change", lambda ctx, id, value: print(value))
+        with col():
+            input("",id="url", required=True).on("change", input_setter)
+        with col():
+            label("Location:")
+        with col():
+            input("",id="location", required=True).on("change", input_setter)
+        
+        
+        button("Add Repository",id="add_repository_btn").on("click", add_repository)
